@@ -1,0 +1,472 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.2
+-- Dumped by pg_dump version 15.2
+
+-- Started on 2023-05-03 16:49:51
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE autobusesdb;
+--
+-- TOC entry 3364 (class 1262 OID 16398)
+-- Name: autobusesdb; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE autobusesdb WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Spanish_Spain.1252';
+
+
+ALTER DATABASE autobusesdb OWNER TO postgres;
+
+\connect autobusesdb
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 215 (class 1259 OID 16401)
+-- Name: Autobuses; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Autobuses" (
+    id integer NOT NULL,
+    linea character varying
+);
+
+
+ALTER TABLE public."Autobuses" OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 16426)
+-- Name: Autobuses_Lugares; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Autobuses_Lugares" (
+    "Autobuses_id" integer NOT NULL,
+    "Lugares_id" integer NOT NULL,
+    "Conductores_id" integer NOT NULL,
+    fecha date NOT NULL
+);
+
+
+ALTER TABLE public."Autobuses_Lugares" OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 16423)
+-- Name: Autobuses_Lugares_Autobuses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Autobuses_Lugares_Autobuses_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Autobuses_Lugares_Autobuses_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3365 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: Autobuses_Lugares_Autobuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Autobuses_Lugares_Autobuses_id_seq" OWNED BY public."Autobuses_Lugares"."Autobuses_id";
+
+
+--
+-- TOC entry 222 (class 1259 OID 16425)
+-- Name: Autobuses_Lugares_Conductores_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Autobuses_Lugares_Conductores_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Autobuses_Lugares_Conductores_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3366 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: Autobuses_Lugares_Conductores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Autobuses_Lugares_Conductores_id_seq" OWNED BY public."Autobuses_Lugares"."Conductores_id";
+
+
+--
+-- TOC entry 221 (class 1259 OID 16424)
+-- Name: Autobuses_Lugares_Lugares_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Autobuses_Lugares_Lugares_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Autobuses_Lugares_Lugares_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3367 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: Autobuses_Lugares_Lugares_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Autobuses_Lugares_Lugares_id_seq" OWNED BY public."Autobuses_Lugares"."Lugares_id";
+
+
+--
+-- TOC entry 214 (class 1259 OID 16400)
+-- Name: Autobuses_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Autobuses_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Autobuses_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3368 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: Autobuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Autobuses_id_seq" OWNED BY public."Autobuses".id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 16408)
+-- Name: Conductores; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Conductores" (
+    id integer NOT NULL,
+    nombre character varying
+);
+
+
+ALTER TABLE public."Conductores" OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16407)
+-- Name: Conductores_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Conductores_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Conductores_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3369 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: Conductores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Conductores_id_seq" OWNED BY public."Conductores".id;
+
+
+--
+-- TOC entry 219 (class 1259 OID 16417)
+-- Name: Lugares; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Lugares" (
+    id integer NOT NULL,
+    nombre character varying
+);
+
+
+ALTER TABLE public."Lugares" OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16416)
+-- Name: Lugares_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Lugares_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Lugares_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3370 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: Lugares_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Lugares_id_seq" OWNED BY public."Lugares".id;
+
+
+--
+-- TOC entry 3190 (class 2604 OID 16404)
+-- Name: Autobuses id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Autobuses" ALTER COLUMN id SET DEFAULT nextval('public."Autobuses_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3193 (class 2604 OID 16429)
+-- Name: Autobuses_Lugares Autobuses_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Autobuses_Lugares" ALTER COLUMN "Autobuses_id" SET DEFAULT nextval('public."Autobuses_Lugares_Autobuses_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3194 (class 2604 OID 16430)
+-- Name: Autobuses_Lugares Lugares_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Autobuses_Lugares" ALTER COLUMN "Lugares_id" SET DEFAULT nextval('public."Autobuses_Lugares_Lugares_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3195 (class 2604 OID 16431)
+-- Name: Autobuses_Lugares Conductores_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Autobuses_Lugares" ALTER COLUMN "Conductores_id" SET DEFAULT nextval('public."Autobuses_Lugares_Conductores_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3191 (class 2604 OID 16411)
+-- Name: Conductores id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Conductores" ALTER COLUMN id SET DEFAULT nextval('public."Conductores_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3192 (class 2604 OID 16420)
+-- Name: Lugares id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Lugares" ALTER COLUMN id SET DEFAULT nextval('public."Lugares_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3350 (class 0 OID 16401)
+-- Dependencies: 215
+-- Data for Name: Autobuses; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Autobuses" (id, linea) VALUES (1, '626');
+INSERT INTO public."Autobuses" (id, linea) VALUES (2, '626A');
+INSERT INTO public."Autobuses" (id, linea) VALUES (3, '641');
+INSERT INTO public."Autobuses" (id, linea) VALUES (4, '642');
+INSERT INTO public."Autobuses" (id, linea) VALUES (5, '643');
+
+
+--
+-- TOC entry 3358 (class 0 OID 16426)
+-- Dependencies: 223
+-- Data for Name: Autobuses_Lugares; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Autobuses_Lugares" ("Autobuses_id", "Lugares_id", "Conductores_id", fecha) VALUES (1, 1, 1, '2023-05-03');
+INSERT INTO public."Autobuses_Lugares" ("Autobuses_id", "Lugares_id", "Conductores_id", fecha) VALUES (2, 4, 5, '2020-11-24');
+INSERT INTO public."Autobuses_Lugares" ("Autobuses_id", "Lugares_id", "Conductores_id", fecha) VALUES (2, 1, 1, '2023-05-03');
+
+
+--
+-- TOC entry 3352 (class 0 OID 16408)
+-- Dependencies: 217
+-- Data for Name: Conductores; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Conductores" (id, nombre) VALUES (1, 'Pepe');
+INSERT INTO public."Conductores" (id, nombre) VALUES (2, 'Juan');
+INSERT INTO public."Conductores" (id, nombre) VALUES (3, 'Jesús');
+INSERT INTO public."Conductores" (id, nombre) VALUES (4, 'Pedro');
+INSERT INTO public."Conductores" (id, nombre) VALUES (5, 'Peter');
+
+
+--
+-- TOC entry 3354 (class 0 OID 16417)
+-- Dependencies: 219
+-- Data for Name: Lugares; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Lugares" (id, nombre) VALUES (1, 'Majadahonda');
+INSERT INTO public."Lugares" (id, nombre) VALUES (2, 'Las Rozas');
+INSERT INTO public."Lugares" (id, nombre) VALUES (3, 'Moncloa');
+INSERT INTO public."Lugares" (id, nombre) VALUES (4, 'Sevilla');
+
+
+--
+-- TOC entry 3371 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: Autobuses_Lugares_Autobuses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Autobuses_Lugares_Autobuses_id_seq"', 1, false);
+
+
+--
+-- TOC entry 3372 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: Autobuses_Lugares_Conductores_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Autobuses_Lugares_Conductores_id_seq"', 1, false);
+
+
+--
+-- TOC entry 3373 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: Autobuses_Lugares_Lugares_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Autobuses_Lugares_Lugares_id_seq"', 1, false);
+
+
+--
+-- TOC entry 3374 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: Autobuses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Autobuses_id_seq"', 5, true);
+
+
+--
+-- TOC entry 3375 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: Conductores_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Conductores_id_seq"', 5, true);
+
+
+--
+-- TOC entry 3376 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: Lugares_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Lugares_id_seq"', 4, true);
+
+
+--
+-- TOC entry 3203 (class 2606 OID 16515)
+-- Name: Autobuses_Lugares Autobuses_Lugares_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Autobuses_Lugares"
+    ADD CONSTRAINT "Autobuses_Lugares_pkey" PRIMARY KEY ("Autobuses_id", "Lugares_id", "Conductores_id", fecha);
+
+
+--
+-- TOC entry 3197 (class 2606 OID 16406)
+-- Name: Autobuses Autobuses_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Autobuses"
+    ADD CONSTRAINT "Autobuses_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3199 (class 2606 OID 16415)
+-- Name: Conductores Conductores_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Conductores"
+    ADD CONSTRAINT "Conductores_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3201 (class 2606 OID 16422)
+-- Name: Lugares Lugares_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Lugares"
+    ADD CONSTRAINT "Lugares_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3204 (class 2606 OID 16434)
+-- Name: Autobuses_Lugares Autobuses_Lugares_Autobuses_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Autobuses_Lugares"
+    ADD CONSTRAINT "Autobuses_Lugares_Autobuses_id_fkey" FOREIGN KEY ("Autobuses_id") REFERENCES public."Autobuses"(id) NOT VALID;
+
+
+--
+-- TOC entry 3205 (class 2606 OID 16444)
+-- Name: Autobuses_Lugares Autobuses_Lugares_Conductores_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Autobuses_Lugares"
+    ADD CONSTRAINT "Autobuses_Lugares_Conductores_id_fkey" FOREIGN KEY ("Conductores_id") REFERENCES public."Conductores"(id) NOT VALID;
+
+
+--
+-- TOC entry 3206 (class 2606 OID 16439)
+-- Name: Autobuses_Lugares Autobuses_Lugares_Lugares_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Autobuses_Lugares"
+    ADD CONSTRAINT "Autobuses_Lugares_Lugares_id_fkey" FOREIGN KEY ("Lugares_id") REFERENCES public."Lugares"(id) NOT VALID;
+
+
+-- Completed on 2023-05-03 16:49:51
+
+--
+-- PostgreSQL database dump complete
+--
+
